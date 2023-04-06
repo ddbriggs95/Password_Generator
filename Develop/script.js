@@ -25,13 +25,12 @@ function writePassword() {
 function generatePassword(){
   //first code to prompt user to input password length
   var passLength = prompt("Enter number of characters between 8 and 128 for password length");
-  console.log("passLength = ", passLength);
-  passLength = parseInt(passLength);
+  passLength = parseInt(passLength); //parsing from string to number
   var lower = false;
   var upper = false;
   var special = false;
   var num = false;
-
+  choiceArray = [];  //clearing the array for each generation attempt by user
 
   if(passLength >= 8 && passLength <= 128) {
     lower = confirm("press OK to include lowercase characters in password");
@@ -52,6 +51,13 @@ function generatePassword(){
       alert("Your password will include special characters")
     }
     console.log("choicearray = ", choiceArray);
+    num = confirm("press OK to include numbers in password");
+    if (num){
+      choiceArray = choiceArray.concat(numberArray);
+      alert("Your password will include numbers")
+    }
+    console.log("choicearray = ", choiceArray);
+  
   
   }
   else {
