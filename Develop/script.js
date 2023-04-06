@@ -35,16 +35,24 @@ function generatePassword(){
 
   if(passLength >= 8 && passLength <= 128) {
     lower = confirm("press OK to include lowercase characters in password");
-    if (lower ){
+    if (lower){
       choiceArray = choiceArray.concat(lowCaseArray);
       alert("Your password will include lowercase characters")
     }
-    console.log("choicearray = ", choiceArray); //want to make sure I can see what array is 
-    if (upper ){
+    console.log("choicearray = ", choiceArray);
+    upper = confirm("press OK to include uppercase characters in password");
+    if (upper){
       choiceArray = choiceArray.concat(uppCaseArray);
-      alert("Your password will include lowercase characters")
+      alert("Your password will include uppercase characters")
     }
     console.log("choicearray = ", choiceArray);
+    special = confirm("press OK to include special characters in password");
+    if (special){
+      choiceArray = choiceArray.concat(specialCharArray);
+      alert("Your password will include special characters")
+    }
+    console.log("choicearray = ", choiceArray);
+  
   }
   else {
     alert("The password must be number between 8-128. Please re write.");
