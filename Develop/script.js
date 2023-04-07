@@ -1,4 +1,4 @@
-//Define variables for characters
+//Define variables for characters to be used in password generation if user chooses 'OK'
 var characterLength = 8;
 var choiceArray = [];
 var specialCharArray = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', ':', ';', '<', '>', '=', '?', '/', "@", '{', '}', '[', ']', '~', '`' ];
@@ -30,44 +30,63 @@ function generatePassword(){
   var upper = false;
   var special = false;
   var num = false;
+  var index = 0;
+  var randomChar = "";
+  var password = "";
   choiceArray = [];  //clearing the array for each generation attempt by user
 
   if(passLength >= 8 && passLength <= 128) {
+
+    //lowercase character prompt code to determine if lowercase characters will be added to choiceArray 
     lower = confirm("press OK to include lowercase characters in password");
     if (lower){
       choiceArray = choiceArray.concat(lowCaseArray);
-      alert("Your password will include lowercase characters")
+      alert("Your password will include lowercase characters");
     }
     console.log("choicearray = ", choiceArray);
+
+    //uppercase character prompt code to determine if uppercase characters will be added to choiceArray
     upper = confirm("press OK to include uppercase characters in password");
     if (upper){
       choiceArray = choiceArray.concat(uppCaseArray);
-      alert("Your password will include uppercase characters")
+      alert("Your password will include uppercase characters");
     }
     console.log("choicearray = ", choiceArray);
+
+    //special character prompt code to determine if special characters will be added to choiceArray
     special = confirm("press OK to include special characters in password");
     if (special){
       choiceArray = choiceArray.concat(specialCharArray);
       alert("Your password will include special characters")
     }
     console.log("choicearray = ", choiceArray);
+
+    //number prompt code to determine if numbers will be added to choiceArray
     num = confirm("press OK to include numbers in password");
     if (num){
       choiceArray = choiceArray.concat(numberArray);
-      alert("Your password will include numbers")
+      alert("Your password will include numbers");
     }
     console.log("choicearray = ", choiceArray);
   
-  
+
+   //password generation code on last user prompt click
+  if(lower && upper && special && num){
+    for(var i = 0; i < passLength; i++){
+      index = Math.floor(Math.random() * choiceArray.length);
+      randomChar = choiceArray[index];
+      password += randomChar;
+    }
+    return password;
+  } else {
+    alert("atleast 1 character type should be included for password generation. Please retry");
+  }
   }
   else {
     alert("The password must be number between 8-128. Please re write.");
   }
 
-  return "Generated Password will go here"; //return variable for created password here
+  return password; //return variable for created password here
 
 }
 
-function getPrompts(){
-
-}
